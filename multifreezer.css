@@ -1,0 +1,96 @@
+/*
+jQuery MultiFreezer - scrollable tables with freezed thead and (n) first columns.
+(c) 2017 Jan Renner (http://janrenner.cz, jan.renner@gmail.com)
+https://jsfiddle.net/2oj9c5q2/7/ - layout final
+https://jsfiddle.net/2oj9c5q2/10/ - JS scrolling
+https://jsfiddle.net/2oj9c5q2/19/ - before cloning
+https://jsfiddle.net/2oj9c5q2/21
+*/
+/*common*/
+#freezer-example { width: 600px; max-height: 300px; overflow: hidden; margin: 1em auto; }
+#freezer-example .table th,#freezer-example .table td { white-space: nowrap; }
+#freezer-example .table th { outline: 1px solid crimson; background: #eee; }
+#freezer-example .table thead th { outline: 1px solid gold; }
+#freezer-example .table col { width: 120px; }
+/*freezer*/
+/*
+-------------------- (#freezer-example) - common wrapper, not a part of freezer
+    -------------------- .freeze-multi-scroll-wrapper = wrapper
+        -------------------- .freeze-multi-scroll-table
+            -------------------- .freeze-multi-scroll-table-head
+                -------------------- .freeze-multi-scroll-table-head-inner = headblock
+                    <table><thead> .table-freeze-multi-clone
+                --------------------|
+            --------------------|
+            -------------------- .freeze-multi-scroll-table-body = scroller
+                <table> .table-freeze-multi (original table) = table
+                ====================================================
+            --------------------|
+        --------------------|
+        -------------------- .freeze-multi-scroll-left
+            -------------------- .freeze-multi-scroll-left-head = topblock
+                <table><thead> .table-freeze-multi-clone
+            --------------------|
+            -------------------- .freeze-multi-scroll-left-body
+                -------------------- .freeze-multi-scroll-left-body-inner = leftblock
+                    <table><thead> .table-freeze-multi-clone
+                --------------------|
+            --------------------|
+        --------------------|
+    --------------------|
+--------------------|
+*/
+.table-freeze-multi,
+.table-freeze-multi-clone {
+    table-layout: fixed;
+    width: 100%;
+}
+.freeze-multi-scroll-wrapper {
+    position: relative;
+    clear: both;
+}
+.freeze-multi-scroll-table {}
+.freeze-multi-scroll-table-head {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.freeze-multi-scroll-table-head-inner {
+    box-sizing: content-box;
+}
+.freeze-multi-scroll-table-body {
+    position: relative;
+    overflow: auto;
+    width: 100%;
+}
+.freeze-multi-scroll-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1px;
+}
+.freeze-multi-scroll-left-head {
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.freeze-multi-scroll-left-body,
+.freeze-multi-scroll-left-body-inner {
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.freeze-multi-scroll-left-body-inner {
+    overflow-y: scroll;
+}
+/* @see https://davidwalsh.name/detect-scrollbar-width */
+/* way the hell off screen */
+.freezer-scrollbar-measure {
+    width: 100px;
+    height: 100px;
+    overflow: scroll;
+    position: absolute;
+    top: -9999px;
+}

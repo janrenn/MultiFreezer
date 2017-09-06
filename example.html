@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery MultiFreezer</title>
+<!-- CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="multifreezer.css" rel="stylesheet">
+<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<script src="multifreezer.js"></script>
+<body>
+
+<div class="container"><div class="row"><div class="col-sm-12">
+
+<h1>jQuery MultiFreezer</h1>
+<h2 style="padding-bottom:1em">Scrollable tables with freezed thead and first (n) columns</h2>
+
+</div></div>
+<div class="row"><div class="col-sm-12">
+
+<div id="freezer-example" style="margin:0">
+<!--
+jQuery MultiFreezer - scrollable tables with freezed thead and (n) first columns.
+(c) 2017 Jan Renner (http://janrenner.cz, jan.renner@gmail.com)
+Bootstrap 3 compatible, demands <THEAD> and <TBODY>
+***
+data-scroll-height = scroller height, if null, common wrapper height() will be used
+data-cols-number = number of columns to freeze, if null, will be autodetected from <TH>
+-->
+  <table class="table table-condensed table-freeze-multi" 
+    data-scroll-height="300"
+    data-cols-number="2">
+    <colgroup>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th rowspan="4">TH 1/1</th>
+        <th rowspan="4">TH 1/2</th>
+        <th>TH 1/3</th>
+        <th>TH 1/4</th>
+        <th>TH 1/5</th>
+        <th>TH 1/6</th>
+        <th>TH 1/7</th>
+        <th>TH 1/8</th>
+        <th>TH 1/9</th>
+        <th>TH 1/10</th>
+      </tr>
+      <tr>
+        <th>TH 2/3</th>
+        <th>TH 2/4</th>
+        <th>TH 2/5</th>
+        <th>TH 2/6</th>
+        <th>TH 2/7</th>
+        <th>TH 2/8</th>
+        <th>TH 2/9</th>
+        <th>TH 2/10</th>
+      </tr>
+      <tr>
+        <th>TH 3/3</th>
+        <th>TH 3/4</th>
+        <th>TH 3/5</th>
+        <th>TH 3/6</th>
+        <th>TH 3/7</th>
+        <th>TH 3/8</th>
+        <th>TH 3/9</th>
+        <th>TH 3/10</th>
+      </tr>
+      <tr>
+        <th>TH 4/3</th>
+        <th>TH 4/4</th>
+        <th>TH 4/5</th>
+        <th>TH 4/6</th>
+        <th>TH 4/7</th>
+        <th>TH 4/8</th>
+        <th>TH 4/9</th>
+        <th>TH 4/10</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>TH 1/1</th>
+        <th>TH 1/2</th>
+        <td>TD 1/3</td>
+        <td>TD 1/4</td>
+        <td>TD 1/5</td>
+        <td>TD 1/6</td>
+        <td>TD 1/7</td>
+        <td>TD 1/8</td>
+        <td>TD 1/9</td>
+        <td>TD 1/10</td>
+      </tr>
+      <tr>
+        <th>TH 2/1</th>
+        <th>TH 2/2</th>
+        <td>TD 2/3</td>
+        <td>TD 2/4</td>
+        <td>TD 2/5</td>
+        <td>TD 2/6</td>
+        <td>TD 2/7</td>
+        <td>TD 2/8</td>
+        <td>TD 2/9</td>
+        <td>TD 2/10</td>
+      </tr>
+      <tr>
+        <th>TH 3/1</th>
+        <th>TH 3/2</th>
+        <td>TD 3/3</td>
+        <td>TD 3/4</td>
+        <td>TD 3/5</td>
+        <td>TD 3/6</td>
+        <td>TD 3/7</td>
+        <td>TD 3/8</td>
+        <td>TD 3/9</td>
+        <td>TD 3/10</td>
+      </tr>
+      <tr>
+        <th>TH 4/1</th>
+        <th>TH 4/2</th>
+        <td>TD 4/3</td>
+        <td>TD 4/4</td>
+        <td>TD 4/5</td>
+        <td>TD 4/6</td>
+        <td>TD 4/7</td>
+        <td>TD 4/8</td>
+        <td>TD 4/9</td>
+        <td>TD 4/10</td>
+      </tr>
+      <tr>
+        <th>TH 5/1</th>
+        <th>TH 5/2</th>
+        <td>TD 5/3</td>
+        <td>TD 5/4</td>
+        <td>TD 5/5</td>
+        <td>TD 5/6</td>
+        <td>TD 5/7</td>
+        <td>TD 5/8</td>
+        <td>TD 5/9</td>
+        <td>TD 5/10</td>
+      </tr>
+      <tr>
+        <th>TH 6/1</th>
+        <th>TH 6/2</th>
+        <td>TD 6/3</td>
+        <td>TD 6/4</td>
+        <td>TD 6/5</td>
+        <td>TD 6/6</td>
+        <td>TD 6/7</td>
+        <td>TD 6/8</td>
+        <td>TD 6/9</td>
+        <td>TD 6/10</td>
+      </tr>
+      <tr>
+        <th>TH 7/1</th>
+        <th>TH 7/2</th>
+        <td>TD 7/3</td>
+        <td>TD 7/4</td>
+        <td>TD 7/5</td>
+        <td>TD 7/6</td>
+        <td>TD 7/7</td>
+        <td>TD 7/8</td>
+        <td>TD 7/9</td>
+        <td>TD 7/10</td>
+      </tr>
+      <tr>
+        <th>TH 8/1</th>
+        <th>TH 8/2</th>
+        <td>TD 8/3</td>
+        <td>TD 8/4</td>
+        <td>TD 8/5</td>
+        <td>TD 8/6</td>
+        <td>TD 8/7</td>
+        <td>TD 8/8</td>
+        <td>TD 8/9</td>
+        <td>TD 8/10</td>
+      </tr>
+      <tr>
+        <th>TH 9/1</th>
+        <th>TH 9/2</th>
+        <td>TD 9/3</td>
+        <td>TD 9/4</td>
+        <td>TD 9/5</td>
+        <td>TD 9/6</td>
+        <td>TD 9/7</td>
+        <td>TD 9/8</td>
+        <td>TD 9/9</td>
+        <td>TD 9/10</td>
+      </tr>
+      <tr>
+        <th>TH 10/1</th>
+        <th>TH 10/2</th>
+        <td>TD 10/3</td>
+        <td>TD 10/4</td>
+        <td>TD 10/5</td>
+        <td>TD 10/6</td>
+        <td>TD 10/7</td>
+        <td>TD 10/8</td>
+        <td>TD 10/9</td>
+        <td>TD 10/10</td>
+      </tr>
+      <tr>
+        <th>TH 11/1</th>
+        <th>TH 11/2</th>
+        <td>TD 11/3</td>
+        <td>TD 11/4</td>
+        <td>TD 11/5</td>
+        <td>TD 11/6</td>
+        <td>TD 11/7</td>
+        <td>TD 11/8</td>
+        <td>TD 11/9</td>
+        <td>TD 11/10</td>
+      </tr>
+      <tr>
+        <th>TH 12/1</th>
+        <th>TH 12/2</th>
+        <td>TD 12/3</td>
+        <td>TD 12/4</td>
+        <td>TD 12/5</td>
+        <td>TD 12/6</td>
+        <td>TD 12/7</td>
+        <td>TD 12/8</td>
+        <td>TD 12/9</td>
+        <td>TD 12/10</td>
+      </tr>
+      <tr>
+        <th>TH 13/1</th>
+        <th>TH 13/2</th>
+        <td>TD 13/3</td>
+        <td>TD 13/4</td>
+        <td>TD 13/5</td>
+        <td>TD 13/6</td>
+        <td>TD 13/7</td>
+        <td>TD 13/8</td>
+        <td>TD 13/9</td>
+        <td>TD 13/10</td>
+      </tr>
+      <tr>
+        <th>TH 14/1</th>
+        <th>TH 14/2</th>
+        <td>TD 14/3</td>
+        <td>TD 14/4</td>
+        <td>TD 14/5</td>
+        <td>TD 14/6</td>
+        <td>TD 14/7</td>
+        <td>TD 14/8</td>
+        <td>TD 14/9</td>
+        <td>TD 14/10</td>
+      </tr>
+      <tr>
+        <th>TH 15/1</th>
+        <th>TH 15/2</th>
+        <td>TD 15/3</td>
+        <td>TD 15/4</td>
+        <td>TD 15/5</td>
+        <td>TD 15/6</td>
+        <td>TD 15/7</td>
+        <td>TD 15/8</td>
+        <td>TD 15/9</td>
+        <td>TD 15/10</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+</div></div></div>
+
+</body></html>
